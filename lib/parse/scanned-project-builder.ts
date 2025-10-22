@@ -9,12 +9,18 @@ export function buildScannedProjects(
   verboseEnabled = false,
   fingerprintMap = new Map<string, FingerprintData>(),
   includePurl = false,
+  sbomMavenScopeProperties = false,
 ): { scannedProjects: ScannedProject[] } {
+  // When sbomMavenScopeProperties is enabled, we need to include test scope
+  // dependencies to properly analyze and label all Maven scopes for SBOM purposes
+  const effectiveIncludeTestScope = includeTestScope || sbomMavenScopeProperties;
+  
   const context: ParseContext = {
-    includeTestScope,
+    includeTestScope: effectiveIncludeTestScope,
     verboseEnabled,
     fingerprintMap,
     includePurl,
+    sbomMavenScopeProperties,
   };
 
   const scannedProjects: ScannedProject[] = [];
