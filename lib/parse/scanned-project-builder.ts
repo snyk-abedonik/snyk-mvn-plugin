@@ -11,12 +11,8 @@ export function buildScannedProjects(
   includePurl = false,
   sbomMavenScopeProperties = false,
 ): { scannedProjects: ScannedProject[] } {
-  // When sbomMavenScopeProperties is enabled, we need to include test scope
-  // dependencies to properly analyze and label all Maven scopes for SBOM purposes
-  const effectiveIncludeTestScope = includeTestScope || sbomMavenScopeProperties;
-  
   const context: ParseContext = {
-    includeTestScope: effectiveIncludeTestScope,
+    includeTestScope,
     verboseEnabled,
     fingerprintMap,
     includePurl,

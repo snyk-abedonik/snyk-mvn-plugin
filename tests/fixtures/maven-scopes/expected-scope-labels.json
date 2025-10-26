@@ -12,7 +12,7 @@
       }
     },
     "compileOnly": {
-      "file": "pom-compile-only.xml", 
+      "file": "pom-compile-only.xml",
       "expectedLabels": {
         "org.apache.commons:commons-lang3": "maven:compile",
         "com.google.guava:guava": "maven:compile",
